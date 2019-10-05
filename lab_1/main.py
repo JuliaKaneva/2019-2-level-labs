@@ -6,6 +6,7 @@ text = """The quick, 6, brown fox jumps over the lazy dog!
 The quick brown fox jumps over the lazy dog"""
 stop_words = ['the', 'dog']
 
+
 def calculate_frequences(text):
     if text is None or isinstance(text, int):
         return {}
@@ -27,9 +28,9 @@ def calculate_frequences(text):
 frequency = {
             'the': 2,
             'quick': 1,
-            'brown': 1,
-            'fox': 1,
-            'jumps': 1,
+            'brown': 3,
+            'fox': 4,
+            'jumps': 5,
             'over': 1,
             'lazy': 1,
             'dog': 1
@@ -53,7 +54,15 @@ def filter_stop_words(frequency, stop_words):
             del(frequency[k])
     return frequency
 
-
+top_n = 5
 def get_top_n(frequency, top_n):
+    def by_value(item):
+        return item[1]
 
-    pass
+    frequency_list = list(frequency.items())
+    res = sorted(frequency_list, key=by_value, reverse=True)
+    top_n_words = res[:top_n]
+    print (top_n_words)
+
+
+get_top_n(frequency, top_n)

@@ -25,17 +25,6 @@ def calculate_frequences(text):
         frequency[word] = count + 1
     return frequency
 
-frequency = {
-            'the': 2,
-            'quick': 1,
-            'brown': 3,
-            'fox': 4,
-            'jumps': 5,
-            'over': 1,
-            'lazy': 1,
-            'dog': 1
-        }
-
 def filter_stop_words(frequency, stop_words):
 
     if frequency is None or stop_words is None:
@@ -54,15 +43,29 @@ def filter_stop_words(frequency, stop_words):
             del(frequency[k])
     return frequency
 
+frequency = {'quick': 4,
+            'brown': 3,
+            'fox': 2,
+            'jumps': 1,
+            'lazy': 1,
+            'dog': 1}
+
 top_n = 5
 def get_top_n(frequency, top_n):
-    def by_value(item):
-        return item[1]
 
-    frequency_list = list(frequency.items())
-    res = sorted(frequency_list, key=by_value, reverse=True)
-    top_n_words = res[:top_n]
-    print (top_n_words)
+    if frequency is None:
+        return ()
+    if top_n < 0 or top_n == 0:
+        return ()
+
+    if top_n > len(frequency) or top_n == len(frequency):
+        keys = frequency.keys()
+        return tuple(keys)
+
+    else:
+        list_of_keys = list(frequency.keys())
+        top_n_words = list_of_keys[:top_n]
+        top_n_words = tuple(top_n_words)
+        return top_n_words
 
 
-get_top_n(frequency, top_n)

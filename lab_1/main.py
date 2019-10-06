@@ -43,12 +43,6 @@ def filter_stop_words(frequency, stop_words):
             del(frequency[k])
     return frequency
 
-frequency = {'quick': 4,
-            'brown': 3,
-            'fox': 2,
-            'jumps': 1,
-            'lazy': 1,
-            'dog': 1}
 
 top_n = 5
 def get_top_n(frequency, top_n):

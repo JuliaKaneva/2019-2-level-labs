@@ -35,12 +35,10 @@ def filter_stop_words(frequency, stop_words):
         return frequency
     if not frequency:
         return {}
-    if frequency == frequency:
-        return  frequency
 
-    for k in stop_words:
-        if k in frequency:
-            del(frequency[k])
+    for word in stop_words:
+        if word in frequency:
+            del(frequency[word])
     return frequency
 
 

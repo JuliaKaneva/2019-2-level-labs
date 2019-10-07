@@ -2,9 +2,6 @@
 Labour work #1
 Count frequencies dictionary by the given arbitrary text
 """
-text = """The quick, 6, brown fox jumps over the lazy dog!
-The quick brown fox jumps over the lazy dog"""
-stop_words = ['the', 'dog']
 
 
 def calculate_frequences(text):
@@ -25,6 +22,7 @@ def calculate_frequences(text):
         frequency[word] = count + 1
     return frequency
 
+
 def filter_stop_words(frequency, stop_words):
 
     if frequency is None or stop_words is None:
@@ -35,6 +33,11 @@ def filter_stop_words(frequency, stop_words):
         return frequency
     if not frequency:
         return {}
+    list_of_keys = list(frequency.keys())
+
+    for k in list_of_keys:
+        if isinstance(k, int):
+            del(frequency[k])
 
     for word in stop_words:
         if word in frequency:
@@ -42,7 +45,6 @@ def filter_stop_words(frequency, stop_words):
     return frequency
 
 
-top_n = 5
 def get_top_n(frequency, top_n):
 
     if frequency is None:

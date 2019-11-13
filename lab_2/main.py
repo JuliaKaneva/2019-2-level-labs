@@ -13,7 +13,6 @@ def generate_edit_matrix(num_rows, num_cols):
     return matrix
 
 
-
 def initialize_edit_matrix(matrix, add_weight, remove_weight):
     if not isinstance(add_weight, int) or not isinstance(remove_weight, int):
         return list(matrix)
@@ -60,6 +59,7 @@ def fill_edit_matrix(matrix, add_weight, remove_weight, substitute_weight, origi
             matrix[i][j] = minimum_value((rem_weight, ad_weight, sub_weight))
     return list(matrix)
 
+
 def find_distance(original_word,
                   target_word,
                   add_weight,
@@ -77,20 +77,20 @@ def find_distance(original_word,
 
 
 def save_to_csv(matrix: tuple, path_to_file) -> None:
-    with open(path_to_file, 'w') as f:
+    with open(path_to_file, 'w') as file:
         for row in matrix:
             line = ''
             for i in row:
                 line += str(i)
                 line += ','
-            f.write(line[:-1] + '\n')
+            file.write(line[:-1] + '\n')
     return None
 
 
-def load_from_csv(path_to_file: str) -> list:
-    with open(path_to_file) as f:
+def load_from_csv(path_to_file):
+    with open(path_to_file) as file:
         matrix = []
-        full_file = f.read().split('\n')[:-1]
+        full_file = file.read().split('\n')[:-1]
         for line in full_file:
             matrix.append(line.split(','))
     return full_file
